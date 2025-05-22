@@ -2,9 +2,7 @@ import basicItems from "../models/basicmodels.js";
 
 export const createService = async (request) => {
   try {
-    console.log("service request===>", request.body);
     const output = new basicItems(request.body);
-    console.log("service output===>", output);
     await output.save();
     return {
       statusCode: 200,
@@ -22,11 +20,11 @@ export const readService = async (request) => {
     if (request?.body?.id) {
       const response = await basicItems.findOne({ _id: request?.body?.id });
 
-      if(!response){
-      return {
-        statusCode: 404,
-        statusMessage: "Item Not Found",
-      };
+      if (!response) {
+        return {
+          statusCode: 404,
+          statusMessage: "Item Not Found",
+        };
       }
       return {
         statusCode: 200,
@@ -61,7 +59,6 @@ export const updateService = async (request) => {
       },
       { new: true }
     );
-    console.log("response===>", response);
     if (!response) {
       return {
         statusCode: 404,

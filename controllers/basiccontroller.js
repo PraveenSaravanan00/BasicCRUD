@@ -1,4 +1,9 @@
-import { createService ,readService,updateService,deleteService} from "../services/basicservice.js";
+import {
+  createService,
+  readService,
+  updateService,
+  deleteService,
+} from "../services/basicservice.js";
 
 export const basicCreate = async (req, res, next) => {
   try {
@@ -26,7 +31,7 @@ export const basicRead = async (req, res, next) => {
 
 export const basicUpdate = async (req, res, next) => {
   try {
-    console.log("basicUpdate controller==>",req.body)
+    console.log("basicUpdate controller==>", req.body);
     const response = await updateService(req);
     res.status(200).json(response);
   } catch (error) {
@@ -37,11 +42,9 @@ export const basicUpdate = async (req, res, next) => {
   }
 };
 
-// basicDelete
-
 export const basicDelete = async (req, res, next) => {
   try {
-    console.log("basicUpdate controller==>",req.body)
+    console.log("basicUpdate controller==>", req.body);
     const response = await deleteService(req);
     res.status(200).json(response);
   } catch (error) {
