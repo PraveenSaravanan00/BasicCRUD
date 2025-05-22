@@ -1,15 +1,21 @@
-console.log("hello world")
-
 import express from "express";
-import basicRouter from "./routes/basicroute.js"
+import basicRouter from "./routes/basicroute.js";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
-const app=express();
+dotenv.config();
 
-app.use(express.json())
+const app = express();
 
+app.use(express.json());
 
-app.use("/api/v1",basicRouter)
+app.use("/api/v1", basicRouter);
 
-app.listen(8000,()=>{
-console.log("server is listening 8000")
+mongoose
+  .connect(process.env.MONGO_URL)
+  .then(() => console.log("MongoDB conncted"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+app.listen(8000, () => {
+  console.log("server is listening 8000");
 });
